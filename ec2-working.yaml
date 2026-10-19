@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Amazon Elastic Compute Cloud (EC2) Template
+Parameters:
+  LatestAmiId:
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+Resources:
+ Ec2Instance:
+  Type: AWS::EC2::Instance
+  Properties:
+   ImageId: !Ref LatestAmiId
+   KeyName: !Ref AWS::AccountId
+   InstanceType: t2.micro
+   NetworkInterfaces:
+    - AssociatePublicIpAddress: "true"
+      DeviceIndex: "0"
+      AdditionalInfo: String
+      Affinity: String
+      AvailabilityZone: String
+      BlockDeviceMappings:
+        - BlockDeviceMapping
+      CpuOptions: puOptions
+      CreditSpecification: CreditSpecification
+      DisableApiTermination: Boolean
+      EbsOptimized: Boolean
+      ElasticGpuSpecifications:
+        - ElasticGpuSpecification
+      ElasticInferenceAccelerators:
+        - ElasticInferenceAccelerator
+      EnclaveOptions: EnclaveOptions
+      HibernationOptions: HibernationOptions
+      HostId: String
+      HostResourceGroupArn: String
+      IamInstanceProfile: String
+      ImageId: String
+      InstanceInitiatedShutdownBehavior: String
+      InstanceType: String
+      Ipv6AddressCount: Integer
+      Ipv6Addresses:
+        - InstanceIpv6Address
+      KernelId: String
+      KeyName: String
+      LaunchTemplate: LaunchTemplateSpecification
+      LicenseSpecifications:
+        - LicenseSpecification
+      MetadataOptions: MetadataOptions
+      Monitoring: Boolean
+      NetworkInterfaces:
+        - NetworkInterface
+      PlacementGroupName: String
+      PrivateDnsNameOptions: PrivateDnsNameOptions
+      PrivateIpAddress: String
+      PropagateTagsToVolumeOnCreation: Boolean
+      RamdiskId: String
+      SecurityGroupIds:
+        - String
+      SecurityGroups:
+        - String
+      SourceDestCheck: Boolean
+      SsmAssociations:
+        - SsmAssociation
+      SubnetId: String
+      Tags:
+        - Tag
+      Tenancy: String
+      UserData: String
+      Volumes:
+        - Volume
