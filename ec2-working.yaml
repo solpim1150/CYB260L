@@ -11,6 +11,12 @@ Resources:
    ImageId: !Ref LatestAmiId
    KeyName: !Ref AWS::AccountId
    InstanceType: t2.micro
+   BlockDeviceMappings:
+     - DeviceName: /dev/sdm
+       Ebs:
+         VolumeType: gp2
+         DeleteOnTermination: false
+         VolumeSize: 20
    NetworkInterfaces:
     - AssociatePublicIpAddress: "true"
       DeviceIndex: "0"
@@ -66,3 +72,4 @@ Resources:
       UserData: String
       Volumes:
         - Volume
+
