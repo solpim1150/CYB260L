@@ -1,0 +1,74 @@
+# Description of what this change includes
+# Revision number
+# Date
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  AWS VPC for ECPI student Solpim1150.
+  Deploy in AWS Region us-west-2 (Oregon).
+  Includes three Availability Zones.
+
+Resources:
+
+  # Create VPC named VPC-Solpim1150
+  StudentVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: VPC-Solpim1150
+
+  # First Availability Zone
+  SubnetAZ1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref StudentVPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: !Select [0, !GetAZs '']
+      Tags:
+        - Key: Name
+          Value: Subnet1-Solpim1150
+
+  # Second Availability Zone
+  SubnetAZ2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref StudentVPC
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: !Select [1, !GetAZs '']
+      Tags:
+        - Key: Name
+          Value: Subnet2-Solpim1150
+
+  # Third Availability Zone
+  SubnetAZ3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref StudentVPC
+      CidrBlock: 10.0.3.0/24
+      AvailabilityZone: !Select [2, !GetAZs '']
+      Tags:
+        - Key: Name
+          Value: Subnet3-Solpim1150
+
+Outputs:
+  VPCID:
+    Description: Created VPC ID
+    Value: !Ref StudentVPC
+
+  VPCName:
+    Description: VPC name
+    Value: VPC-Solpim1150
+
+  Subnet1ID:
+    Value: !Ref SubnetAZ1
+
+  Subnet2ID:
+    Value: !Ref SubnetAZ2
+
+  Subnet3ID:
+    Value: !Ref SubnetAZ3
+
